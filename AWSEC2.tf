@@ -1,6 +1,6 @@
 ## Create VPC ##
 resource "aws_vpc" "terraform-vpc" {
-  cidr_block       = "172.16.0.0/16"
+  cidr_block       = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = {
     Name = "terraform-demo-vpc"
@@ -57,24 +57,24 @@ output "aws_security_gr_id" {
 ## Create Subnets ##
 resource "aws_subnet" "terraform-subnet_1" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
-  cidr_block = "172.16.10.0/24"
-  availability_zone = "us-east-2a"
+  cidr_block = "10.0.1.0/24"
+  availability_zone = "us-east-1"
 
   tags = {
-    Name = "terraform-subnet_1"
+    Name = "terraform-subnet_dev"
   }
 }
 
-output "aws_subnet_subnet_1" {
-  value = "${aws_subnet.terraform-subnet_1.id}"
+output "aws_subnet_subnet_dev" {
+  value = "${aws_subnet.terraform-subnet_dev.id}"
 }
 
 resource "aws_instance" "terraform_wapp" {
-    ami = "ami-0e38b48473ea57778"
+    ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
-    subnet_id = "${aws_subnet.terraform-subnet_1.id}"
-    key_name               = "terraform-demo"
+    subnet_id = "${aws_subnet.terraform-subnet_dev.id}"
+    key_name               = "terraform-dev"
     count         = 1
     associate_public_ip_address = true
     tags = {
