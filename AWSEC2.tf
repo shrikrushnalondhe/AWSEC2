@@ -58,7 +58,7 @@ output "aws_security_gr_id" {
 resource "aws_subnet" "terraform-subnet_1" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.1.0/24"
-  availability_zone = "us-east-1"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "terraform-subnet_1"
