@@ -79,6 +79,10 @@ resource "aws_instance" "terraform_wapp" {
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.terraform-subnet_1.id}"
   
+  tags = {
+    Name = "terraform_wapp"
+  }
+  
   connection {
       type        = "ssh"
       host        = self.public_ip
