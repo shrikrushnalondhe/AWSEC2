@@ -68,7 +68,7 @@ output "aws_security_gr_id" {
 ## Create Subnets ##
 resource "aws_subnet" "subnet_dev" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
-  cidr_block = "10.0.1.0/24"
+  cidr_block = "10.0.2.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
