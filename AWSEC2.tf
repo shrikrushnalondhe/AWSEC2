@@ -85,7 +85,6 @@ resource "aws_instance" "terraform_wapp" {
       user        = "jenkins"
       private_key = file("/home/jenkins/keys/aws_key")
       timeout     = "4m"
-   }
   
   resource "aws_key_pair" "deployer" {
   key_name   = "aws_key"
@@ -99,6 +98,6 @@ resource "aws_instance" "terraform_wapp" {
       Project           = "DEMO-TERRAFORM"
     }
 }
-
+}
 
 output "instance_id_list"     { value = ["${aws_instance.terraform_wapp.*.id}"] }
