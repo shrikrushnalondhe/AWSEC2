@@ -42,6 +42,13 @@ resource "aws_security_group" "terraform_private_sg" {
     to_port     = 443
   }
 
+  ingress {
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 80
+    to_port     = 80
+  }
+  
   egress {
     protocol    = "all"
     cidr_blocks = ["0.0.0.0/0"]
@@ -59,28 +66,28 @@ output "aws_security_gr_id" {
 }
 
 ## Create Subnets ##
-resource "aws_subnet" "terraform-subnet_1" {
+resource "aws_subnet" "subnet_dev" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
-    Name = "terraform-subnet_1"
+    Name = "subnet_dev"
   }
 }
 
-output "aws_subnet_subnet_1" {
-  value = "${aws_subnet.terraform-subnet_1.id}"
+output "aws_subnet_subnet_dev" {
+  value = "${aws_subnet.subnet_dev.id}"
 }
 
-resource "aws_instance" "terraform_wapp" {
+resource "aws_instance" "dev" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
-    subnet_id = "${aws_subnet.terraform-subnet_1.id}"
+    subnet_id = "${aws_subnet.subnet_dev.id}"
   
   tags = {
-    Name = "terraform_wapp"
+    Name = "dev"
   }
   
   connection {
