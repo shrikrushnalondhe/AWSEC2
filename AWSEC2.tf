@@ -75,9 +75,22 @@ resource "aws_subnet" "subnet_dev" {
     Name = "subnet_dev"
   }
 }
-
 output "aws_subnet_subnet_dev" {
   value = "${aws_subnet.subnet_dev.id}"
+}
+
+resource "aws_subnet" "subnet_prod" {
+  vpc_id     = "${aws_vpc.terraform-vpc.id}"
+  cidr_block = "10.0.3.0/24"
+  availability_zone = "us-east-1b"
+
+  tags = {
+    Name = "subnet_prod"
+  }
+}
+
+output "aws_subnet_subnet_prod" {
+  value = "${aws_subnet.subnet_prod.id}"
 }
 
 resource "aws_instance" "dev" {
