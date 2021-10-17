@@ -71,7 +71,6 @@ output "aws_subnet_subnet_1" {
 
 resource "aws_instance" "terraform_wapp" {
     ami = "ami-02e136e904f3da870"
-   source_ami_region = "us-east-1"
     instance_type = "t2.micro"
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.terraform-subnet_1.id}"
