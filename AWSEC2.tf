@@ -96,7 +96,6 @@ output "aws_subnet_subnet_prod" {
 resource "aws_instance" "dev" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
-    key_name = "aws_key"
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_dev.id}"
   
