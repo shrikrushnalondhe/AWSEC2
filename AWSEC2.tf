@@ -43,7 +43,7 @@ resource "aws_security_group" "terraform_private_sg" {
   }
 
   egress {
-    protocol    = -1
+    protocol    = "all"
     cidr_blocks = ["0.0.0.0/0"]
     from_port   = 0
     to_port     = 0
@@ -104,4 +104,4 @@ resource "aws_instance" "terraform_wapp" {
 }
 }
 
-output "instance_id_list"     { value = ["${aws_instance.terraform_wapp.*.id}"] }
+## output "instance_id_list"     { value = ["${aws_instance.terraform_wapp.*.id}"] } ##
