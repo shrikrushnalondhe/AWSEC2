@@ -102,6 +102,16 @@ resource "aws_instance" "dev" {
   tags = {
     Name = "dev"
   }
+  
+  resource "aws_instance" "prod" {
+    ami = "ami-02e136e904f3da870"
+    instance_type = "t2.micro"
+    vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
+    subnet_id = "${aws_subnet.subnet_prod.id}"
+  
+  tags = {
+    Name = "prod"
+  }
   connection {
       type        = "ssh"
       host        = self.public_ip
