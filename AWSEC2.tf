@@ -112,6 +112,7 @@ resource "aws_instance" "dev" {
   tags = {
     Name = "prod"
   }
+  }
   connection {
       type        = "ssh"
       host        = self.public_ip
@@ -125,4 +126,4 @@ resource "aws_instance" "dev" {
 }
 }
 }
-## output "instance_id_list"     { value = ["${aws_instance.terraform_wapp.*.id}"] } ##
+}
