@@ -102,6 +102,17 @@ resource "aws_instance" "dev" {
   tags = {
     Name = "dev"
   }
+  connection {
+      type        = "ssh"
+      host        = self.public_ip
+      user        = "jenkins"
+      private_key = file("/home/jenkins/keys/aws_key")
+      timeout     = "4m"
+  }
+}
+  resource "aws_key_pair" "deployer" {
+  key_name   = "aws_key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGWY8SDH0GnV4FhP3gPZozofXlfEgxGYpvHmZmJYnvnxMoafvH6y8/9uKMDfM+IJirurxG42gfwfL2Y70ETa0KtEjhEnjZkc09Tri++5WvgjEiiXkr2/pxLYKbDPxEGbKRiyFOFMquHXMxvIBrId3wIpa6mNaMv4fFfWlKXr+IMWGFX4/2RfoVbpkFg+Q6ijyRiUviXS8IjUdRixDrV44wFSwCTpi2v0FqPuTEdkrE1DXIBopseCVumQsCunWRqeU5wrzeZBWhzADvjjKHhb1N56mjgLSw0m6b/xrJNjvc8qAWmkazREW43220OqdkqJYb1lqvsaXism+wksmGv8pNroot@ip-172-31-26-94.ec2.internal"
 }
   resource "aws_instance" "prod" {
     ami = "ami-02e136e904f3da870"
