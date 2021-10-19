@@ -98,7 +98,6 @@ resource "aws_instance" "dev" {
     instance_type = "t2.micro"
     key_name   = "aws_key"
     monitoring  = true
-   AssociatePublicIpAddress = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_dev.id}"
   
@@ -122,7 +121,6 @@ resource "aws_instance" "dev" {
     instance_type = "t2.micro"
     key_name   = "aws_key"
     monitoring  = true
-    AssociatePublicIpAddress = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_prod.id}"
   
