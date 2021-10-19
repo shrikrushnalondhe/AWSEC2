@@ -6,6 +6,7 @@ provider "aws" {
 resource "aws_vpc" "terraform-vpc" {
   cidr_block       = "10.0.0.0/16"
   enable_dns_hostnames = true
+  AssociatePublicIpAddress: true
   tags = {
     Name = "product-demo-vpc"
   }
@@ -120,7 +121,6 @@ resource "aws_instance" "dev" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
     key_name   = "aws_key"
-    ecs_associate_public_ip_address = "false"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_prod.id}"
