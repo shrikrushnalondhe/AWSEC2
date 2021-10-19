@@ -113,7 +113,7 @@ resource "aws_instance" "dev" {
 }
   resource "aws_key_pair" "deployer" {
   key_name   = "aws_key"
-  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGWY8SDH0GnV4FhP3gPZozofXlfEgxGYpvHmZmJYnvnxMoafvH6y8/9uKMDfM+IJirurxG42gfwfL2Y70ETa0KtEjhEnjZkc09Tri++5WvgjEiiXkr2/pxLYKbDPxEGbKRiyFOFMquHXMxvIBrId3wIpa6mNaMv4fFfWlKXr+IMWGFX4/2RfoVbpkFg+Q6ijyRiUviXS8IjUdRixDrV44wFSwCTpi2v0FqPuTEdkrE1DXIBopseCVumQsCunWRqeU5wrzeZBWhzADvjjKHhb1N56mjgLSw0m6b/xrJNjvc8qAWmkazREW43220OqdkqJYb1lqvsaXism+wksmGv8pN root@ip-172-31-26-94.ec2.internal"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+Br2jpx9ZFBJ2xOb4U/+s7vDO5Wmgod1lLA74AdysVC5LC6zdwUAXxMs4+b7WAT6rrzg+UFoTkjWG9XIjJp5CQujZ8102Bg0Y39lp87rvHBaYvWNh+zXOYz2iCxGNh2qAqDQWl+GPXdQtxYVUxdZGb7jObux4ayL1qRhcHpZKv1+775l0ieA6bVPY3J3Nd4f41VxX5GPZX6iNEofVcDepXlL/Jtk4zMBFi528cIQwSbJZbZ+afDNWBLJ0Qr3nZtAWgHcEdBgi9laJWl8gqL7RwuohF1cUfsJtbb79OMkTHxgE+v7NoBH4oUCJDZfe5/88U7QflpOyTd9xQX0i27Ld jenkins@ip-172-31-20-47.ec2.internal"
 }
   resource "aws_instance" "prod" {
     ami = "ami-02e136e904f3da870"
