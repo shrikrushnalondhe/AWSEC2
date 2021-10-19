@@ -120,6 +120,7 @@ resource "aws_instance" "dev" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
     key_name   = "aws_key"
+    ecs_associate_public_ip_address = "false"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_prod.id}"
