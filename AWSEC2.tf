@@ -16,7 +16,7 @@ output "aws_vpc_id" {
 }
 
 ## Security Group##
-resource "aws_security_group" "terraform_private_sg" {
+resource "aws_security_group" "allow_ssh" {
   description = "Allow SSH inbound connections"
   vpc_id      = "${aws_vpc.terraform-vpc.id}"
   name        = "terraform_ec2_private_sg"
@@ -66,7 +66,7 @@ output "aws_security_gr_id" {
 }
 
 ## Create Subnets ##
-resource "aws_subnet" "subnet_dev" {
+resource "aws_subnet" "public" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = true
@@ -76,8 +76,8 @@ resource "aws_subnet" "subnet_dev" {
     Name = "subnet_dev"
   }
 }
-output "aws_subnet_subnet_dev" {
-  value = "${aws_subnet.subnet_dev.id}"
+output "aws_subnet_public" {
+  value = "${aws_subnet.public.id}"
 }
 
 resource "aws_subnet" "subnet_prod" {
