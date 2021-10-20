@@ -66,7 +66,7 @@ output "aws_security_gr_id" {
 }
 
 ## Create Subnets ##
-resource "aws_subnet" "public" {
+resource "aws_subnet" "subnet_dev" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.2.0/24"
   map_public_ip_on_launch = true
@@ -76,11 +76,11 @@ resource "aws_subnet" "public" {
     Name = "subnet_dev"
   }
 }
-output "aws_subnet_public" {
-  value = "${aws_subnet.public.id}"
+output "aws_subnet_subnet_dev" {
+  value = "${aws_subnet.subnet_dev.id}"
 }
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "subnet_prod" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.3.0/24"
   map_public_ip_on_launch = true
@@ -91,8 +91,8 @@ resource "aws_subnet" "public" {
   }
 }
 
-output "aws_subnet_public" {
-  value = "${aws_subnet.public.id}"
+output "aws_subnet_subnet_prod" {
+  value = "${aws_subnet.subnet_prod.id}"
 }
 
 resource "aws_instance" "dev" {
@@ -101,7 +101,7 @@ resource "aws_instance" "dev" {
     key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
-    subnet_id = "${aws_subnet.public.id}"
+    subnet_id = "${aws_subnet.dev.id}"
   
   tags = {
     Name = "dev"
