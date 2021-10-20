@@ -62,7 +62,7 @@ resource "aws_security_group" "allow_ssh" {
 }
 
 output "aws_security_gr_id" {
-  value = "${aws_security_group.terraform_private_sg.id}"
+  value = "${aws_security_group.allow_ssh.id}"
 }
 
 ## Create Subnets ##
@@ -101,7 +101,7 @@ resource "aws_instance" "dev" {
     key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
-    subnet_id = "${aws_subnet.subnet_dev.id}"
+    subnet_id = "${aws_subnet.public.id}"
   
   tags = {
     Name = "dev"
