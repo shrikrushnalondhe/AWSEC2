@@ -101,7 +101,7 @@ resource "aws_instance" "dev" {
     key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
-    subnet_id = "${aws_subnet.dev.id}"
+    subnet_id = "${aws_subnet.subnet_dev.id}"
   
   tags = {
     Name = "dev"
@@ -124,7 +124,7 @@ resource "aws_instance" "dev" {
     key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
-    subnet_id = "${aws_subnet.public.id}"
+    subnet_id = "${aws_subnet.subnet_prod.id}"
   
   tags = {
     Name = "prod"
