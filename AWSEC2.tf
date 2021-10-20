@@ -100,7 +100,7 @@ resource "aws_instance" "dev" {
     instance_type = "t2.micro"
     key_name   = "aws_key"
     monitoring  = true
-    vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
+    vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
     subnet_id = "${aws_subnet.public.id}"
   
   tags = {
@@ -123,7 +123,7 @@ resource "aws_instance" "dev" {
     instance_type = "t2.micro"
     key_name   = "aws_key"
     monitoring  = true
-    vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
+    vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
     subnet_id = "${aws_subnet.subnet_prod.id}"
   
   tags = {
