@@ -80,7 +80,7 @@ output "aws_subnet_public" {
   value = "${aws_subnet.public.id}"
 }
 
-resource "aws_subnet" "subnet_prod" {
+resource "aws_subnet" "public" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.3.0/24"
   map_public_ip_on_launch = true
@@ -91,8 +91,8 @@ resource "aws_subnet" "subnet_prod" {
   }
 }
 
-output "aws_subnet_subnet_prod" {
-  value = "${aws_subnet.subnet_prod.id}"
+output "aws_subnet_public" {
+  value = "${aws_subnet.public.id}"
 }
 
 resource "aws_instance" "dev" {
@@ -124,7 +124,7 @@ resource "aws_instance" "dev" {
     key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.allow_ssh.id}" ]
-    subnet_id = "${aws_subnet.subnet_prod.id}"
+    subnet_id = "${aws_subnet.public.id}"
   
   tags = {
     Name = "prod"
