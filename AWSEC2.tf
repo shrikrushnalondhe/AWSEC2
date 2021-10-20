@@ -17,7 +17,6 @@ output "aws_vpc_id" {
 
 ## Security Group##
 resource "aws_security_group" "terraform_private_sg" {
-  description = "Allow inbound external traffic"
   description = "Allow SSH inbound connections"
   vpc_id      = "${aws_vpc.terraform-vpc.id}"
   name        = "terraform_ec2_private_sg"
