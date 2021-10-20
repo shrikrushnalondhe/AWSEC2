@@ -98,7 +98,7 @@ output "aws_subnet_subnet_prod" {
 resource "aws_instance" "dev" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
-    key_name   = "aws_key1"
+    key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_dev.id}"
@@ -115,13 +115,13 @@ resource "aws_instance" "dev" {
   }
 }
   resource "aws_key_pair" "deployer" {
-  key_name   = "aws_key1"
+  key_name   = "aws_key"
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+Br2jpx9ZFBJ2xOb4U/+s7vDO5Wmgod1lLA74AdysVC5LC6zdwUAXxMs4+b7WAT6rrzg+UFoTkjWG9XIjJp5CQujZ8102Bg0Y39lp87rvHBaYvWNh+zXOYz2iCxGNh2qAqDQWl+GPXdQtxYVUxdZGb7jObux4ayL1qRhcHpZKv1+775l0ieA6bVPY3J3Nd4f41VxX5GPZX6iNEofVcDepXlL/Jtk4zMBFi528cIQwSbJZbZ+afDNWBLJ0Qr3nZtAWgHcEdBgi9laJWl8gqL7RwuohF1cUfsJtbb79OMkTHxgE+v7NoBH4oUCJDZfe5/88U7QflpOyTd9xQX0i27Ld jenkins@ip-172-31-20-47.ec2.internal"
 }
   resource "aws_instance" "prod" {
     ami = "ami-02e136e904f3da870"
     instance_type = "t2.micro"
-    key_name   = "aws_key1"
+    key_name   = "aws_key"
     monitoring  = true
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.subnet_prod.id}"
